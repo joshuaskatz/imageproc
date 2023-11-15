@@ -1,4 +1,4 @@
-module imageproc
+module github.com/joshuaskatz/imageproc
 
 go 1.20
 
