@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -22,18 +21,17 @@ func main() {
 	if err != nil {
 		app.logger.Fatal(err)
 	}
-	path := homedir + "/desktop/fdr_park.tif"
+	path := homedir + "/desktop/decay.tif"
 
-	file := internal_image.NewFile(path)
+	file := internal_image.NewFile()
 
-	fmt.Println(file.Path)
+	file.SetFilePath(path)
 
 	file.LoadImage()
 
-	invertedImage := Process(file)
+	file.SetIsColor(false)
 
-	file.InvertedImage = *invertedImage
+	file.Conversion()
 
 	file.SaveImage()
-
 }
