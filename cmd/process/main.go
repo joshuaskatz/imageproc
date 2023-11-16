@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	internal_image "github.com/joshuaskatz/imageproc/internal/image"
+	"github.com/joshuaskatz/imageproc/internal/image"
 )
 
 type application struct {
@@ -21,15 +21,15 @@ func main() {
 	if err != nil {
 		app.logger.Fatal(err)
 	}
-	path := homedir + "/desktop/decay.tif"
+	path := homedir + "/desktop/lomo.tif"
 
-	file := internal_image.NewFile()
+	file := image.NewFile()
 
 	file.SetFilePath(path)
 
 	file.LoadImage()
 
-	file.SetIsColor(false)
+	file.SetIsColor(true)
 
 	file.Conversion()
 

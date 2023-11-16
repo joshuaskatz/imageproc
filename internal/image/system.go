@@ -1,21 +1,13 @@
-package internal_image
+package image
 
 import (
-	"image"
 	"log"
 	"os"
 
 	"github.com/chai2010/tiff"
 )
 
-type File struct {
-	InitImage     image.Image
-	Path          string
-	InvertedImage image.Image
-	IsColor       bool
-}
-
-func (file *File) LoadImage() {
+func (file *ImageFile) LoadImage() {
 	f, err := os.Open(file.Path)
 	if err != nil {
 		log.Fatalf("os.Open failed: %v", err)
@@ -30,7 +22,7 @@ func (file *File) LoadImage() {
 	file.InitImage = i
 }
 
-func (file *File) SaveImage() {
+func (file *ImageFile) SaveImage() {
 	f, err := os.Create("/Users/joshkatz/Desktop/example.tif")
 
 	if err != nil {
@@ -38,7 +30,7 @@ func (file *File) SaveImage() {
 	}
 	defer f.Close()
 
-	err = tiff.Encode(f, file.InvertedImage, &tiff.Options{})
+	err = tiff.Encode(f, file.ConvertedImage, &tiff.Options{})
 	if err != nil {
 		log.Fatalf("tiff.Encode failed: %v", err)
 	}

@@ -1,13 +1,22 @@
-package internal_image
+package image
 
-func NewFile() *File {
-	return &File{}
+import "image"
+
+type ImageFile struct {
+	InitImage      image.Image
+	Path           string
+	ConvertedImage image.Image
+	IsColor        bool
 }
 
-func (file *File) SetIsColor(isColor bool) {
+func NewFile() *ImageFile {
+	return &ImageFile{}
+}
+
+func (file *ImageFile) SetIsColor(isColor bool) {
 	file.IsColor = isColor
 }
 
-func (file *File) SetFilePath(filePath string) {
+func (file *ImageFile) SetFilePath(filePath string) {
 	file.Path = filePath
 }
