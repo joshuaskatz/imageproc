@@ -5,17 +5,14 @@ import (
 	"log"
 	"os"
 
-	"golang.org/x/image/tiff"
+	"github.com/chai2010/tiff"
 )
 
 type File struct {
-	Image         image.Image
+	InitImage     image.Image
 	Path          string
-	InvertedImage image.NRGBA
-}
-
-func NewFile(filepath string) *File {
-	return &File{Path: filepath}
+	InvertedImage image.Image
+	IsColor       bool
 }
 
 func (file *File) LoadImage() {
@@ -30,7 +27,7 @@ func (file *File) LoadImage() {
 		log.Fatalf("image.Decode failed: %v", err)
 	}
 
-	file.Image = i
+	file.InitImage = i
 }
 
 func (file *File) SaveImage() {
@@ -41,7 +38,7 @@ func (file *File) SaveImage() {
 	}
 	defer f.Close()
 
-	err = tiff.Encode(f, &file.InvertedImage, &tiff.Options{})
+	err = tiff.Encode(f, file.InvertedImage, &tiff.Options{})
 	if err != nil {
 		log.Fatalf("tiff.Encode failed: %v", err)
 	}
