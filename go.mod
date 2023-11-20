@@ -35,6 +35,7 @@ require (
 )
 
 require (
+	fyne.io/fyne v1.4.3
 	fyne.io/fyne/v2 v2.4.1
 	github.com/chai2010/tiff v0.0.0-20211005095045-4ec2aa243943
 	github.com/disintegration/gift v1.2.1
