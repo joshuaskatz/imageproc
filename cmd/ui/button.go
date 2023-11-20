@@ -7,15 +7,15 @@ import (
 	"github.com/joshuaskatz/imageproc/internal/image"
 )
 
-func UploadButton(w fyne.Window, i *image.ImageFile) *widget.Button {
+func UploadButton(w fyne.Window) *widget.Button {
 	var uri string
 
 	button := widget.NewButton("Upload Image", func() {
 		d := dialog.NewFileOpen(func(f fyne.URIReadCloser, e error) {
 			uri = f.URI().Path()
+			i := image.NewFile(uri)
 
 			i.SetFilePath(uri)
-			i.LoadImage()
 
 			ShowConvertView(w, i)
 		}, w)

@@ -17,7 +17,7 @@ func CanvasInitImage(w fyne.Window, i *image.ImageFile) *canvas.Image {
 func CanvasConvertedImage(w fyne.Window, i *image.ImageFile) *canvas.Image {
 	convertedImage := canvas.NewImageFromImage(i.ConvertedImage)
 
-	convertedImage.SetMinSize(fyne.Size{500, 500})
+	go convertedImage.SetMinSize(fyne.Size{500, 500})
 	convertedImage.FillMode = canvas.ImageFillContain
 	return convertedImage
 }
